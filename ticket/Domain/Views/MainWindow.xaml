@@ -1,0 +1,75 @@
+﻿<Window x:Class="ticket.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ticket" xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="1100">
+    <Grid>
+        <Canvas>
+        <Image Source="/Images/World_map.png" Width="450">
+            <!--<Image.RenderTransform>
+                <ScaleTransform ScaleX="2" ScaleY="1"></ScaleTransform>
+            </Image.RenderTransform>-->
+        </Image>
+        
+            <Label Content="Cities" Foreground="Red" FontSize="25" FontWeight="Bold"  Canvas.Top="30" Canvas.Left="30"></Label>
+            <ComboBox SelectedItem="{Binding CitySelectedItem}" DisplayMemberPath="Name" ItemsSource="{Binding CitiesItemSource}" Width="170" Canvas.Top="70" Canvas.Left="35">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="SelectionChanged">
+                        <i:InvokeCommandAction Command="{Binding SelectionChanged}"></i:InvokeCommandAction>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </ComboBox>
+
+            <Label Content="Schedules" Foreground="Red" FontSize="25" FontWeight="Bold"  Canvas.Top="150" Canvas.Left="30"></Label>
+            <ComboBox SelectedItem="{Binding ScheduleSelectedItem}" DisplayMemberPath="StartDateTime" IsEnabled="{Binding SchedulesIsEnable}" ItemsSource="{Binding SchedulesItemSource}" Width="170" Canvas.Top="190" Canvas.Left="35">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="SelectionChanged">
+                        <i:InvokeCommandAction Command="{Binding SelectionChangedSchedules}"></i:InvokeCommandAction>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </ComboBox>
+
+            <Label Content="Airplanes" Foreground="Red" FontSize="25" FontWeight="Bold" Canvas.Top="30" Canvas.Left="430" HorizontalAlignment="Left" VerticalAlignment="Top"></Label>
+            <ComboBox SelectedItem="{Binding Airplane}" DisplayMemberPath="Name" IsEnabled="{Binding IsEnable}" ItemsSource="{Binding AirplanesItemSource}" Width="170" Canvas.Top="70" Canvas.Left="430" HorizontalAlignment="Left" VerticalAlignment="Center">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="SelectionChanged">
+                        <i:InvokeCommandAction Command="{Binding SelectionChangedAirplanes}"></i:InvokeCommandAction>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </ComboBox>
+
+            <Label Content="Flight type" Foreground="Red" FontSize="25" FontWeight="Bold"  Canvas.Top="30" Canvas.Left="814" HorizontalAlignment="Center" VerticalAlignment="Top"></Label>
+            <ComboBox SelectedItem="{Binding FlightType}" DisplayMemberPath="Name" ItemsSource="{Binding FlightTypeItemSource}" IsEnabled="{Binding SchedulesIsEnable}" Width="170" Canvas.Top="70" Canvas.Left="828" HorizontalAlignment="Left" VerticalAlignment="Center"></ComboBox>
+
+            <Label Content="Pilot name" Foreground="Red" FontSize="25" FontWeight="Bold"  Canvas.Top="156" Canvas.Left="400"></Label>
+            <Label Content="{Binding PilotName}" Canvas.Top="201" Canvas.Left="400" Width="200" Background="White" FontSize="20" BorderThickness="3" BorderBrush="Black"></Label>
+
+            <Label Content="Pilot surname" Foreground="Red" FontSize="25" FontWeight="Bold"  Canvas.Top="156" Canvas.Left="749"></Label>
+            <Label Content="{Binding PilotSurname}" Canvas.Top="201" Canvas.Left="749" Width="200" Background="White" FontSize="20" BorderThickness="3" BorderBrush="Black"></Label>
+
+            <Button Command="{Binding PurchaseButton}" Width="200" Height="60" Content="Purchase" FontSize="40" Canvas.Bottom="30" Canvas.Left="35" Canvas.Top="310">
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="20"/>
+                    </Style>
+                </Button.Resources>
+            </Button>
+
+            <TextBlock Background="Black" Width="820" Height="5" Canvas.Top="140" Canvas.Left="280"></TextBlock>
+
+            <TextBlock Background="Black" Width="820" Height="5" Canvas.Top="250" Canvas.Left="280"></TextBlock>
+
+            <TextBlock Width="294" Background="Black" Height="5" Canvas.Left="280" Canvas.Top="140" >
+                <TextBlock.RenderTransform>
+                    <RotateTransform Angle="90"></RotateTransform>
+                </TextBlock.RenderTransform>
+            </TextBlock>
+
+            <ListBox ItemsSource="{Binding TicketsItemSource}" Width="807" Height="162" Canvas.Bottom="0" Canvas.Right="0" Background="Transparent"></ListBox>
+
+        </Canvas>
+    </Grid>
+</Window>
